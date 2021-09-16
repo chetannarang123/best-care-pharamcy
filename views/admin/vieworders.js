@@ -17,19 +17,24 @@ class X {
                     
                         var newRow = ("<tr>");
 
-                    cols += '<tr class="text-center"><td  colspan="1">' + data.comments[mm].id + '</td>';
-                    cols += '<td colspan="2">' + data.comments[mm].userid + '</td>';
-                    cols += '<td colspan="2">' + data.comments[mm].fulladdress + '</td>';
-                    cols += '<td colspan="2" class="text-center">';
+
+                    // cols += '<tr><th scope="row">'+data.comments[mm].id+'</th>';
+
+                    cols += '<th scope="row">'+data.comments[mm].id+'</th>';
+
+                    cols += '<td>'+data.comments[mm].userid+'</td>';
+
+                    cols += '<td>';
 
                     const ids = data.comments[mm].product_ids.split('#');
                     for (var i = 0; i < ids.length; i++) {
                         cols += ids[i] + '<br/>';
                     }
 
-                    cols += '</td>';
+                    cols +='</td>';
 
-                    cols += '<td colspan="2" class="text-center">';
+
+                    cols += '<td>';
 
                     const qty = data.comments[mm].product_quantities.split('#');
                     for (var i = 0; i < qty.length; i++) {
@@ -38,8 +43,12 @@ class X {
 
                     cols += '</td>';
 
-                    cols += '<td colspan="2">' + data.comments[mm].total + '</td></tr>';
-                    //alert(cols);
+                    cols += '<td style="width: 200px">'+data.comments[mm].total+'</td>';
+
+                    cols += '<td style="width: 200px">'+data.comments[mm].fulladdress+'</td>';
+
+                    cols += '<td>'+data.comments[mm].updatedAt+'</td></tr>';
+
 
                 }
 

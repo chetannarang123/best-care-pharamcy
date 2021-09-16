@@ -10,7 +10,7 @@ const obtain = fetch(`http://localhost:3000/getproduct`).then(res => {
 
             document.getElementById("pname").value = data.comments.product_name;
 
-            document.getElementById("pimage").value = data.comments.product_image;
+            //document.getElementById("pimage").value = "../uploads/"+data.comments.product_image;
 
             document.getElementById("pdesc").value = data.comments.product_desc;
             

@@ -12,20 +12,37 @@ class X {
                 const place_images_container = document.getElementById("tbody");
                 var cols = "";
 
+                if(data.comments.length > 0) {
+
                 for(let mm=0;mm<data.comments.length;mm++) {
 
                     //alert(data.comments[mm].product_desc);
                         var newRow = ("<tr>");
 
-                    cols += '<tr><td colspan="1"><img height="50px" width="50px"src=".' + data.comments[mm].product_image + '" alt="' + data.comments[mm].product_name + '"></td>';
 
-                    cols += '<td>' + data.comments[mm].product_name + '</td>';
-                    cols += '<td colspan="2">' + data.comments[mm].product_desc + '</td>';
-                    cols += '<td colspan="2">' + data.comments[mm].category + '</td>';
-                    cols += '<td colspan="2">' + data.comments[mm].price + '</td>';
-                    cols += '<td colspan="1" class="text-center"><button style="color:skyblue;background-color:transparent;border:none" onclick="startedit(' + data.comments[mm].id + ')" class="fas fa-edit"></button><button style="color:red;background-color:transparent;border:none" onclick="deleteProduct(' + data.comments[mm].id + ')">&#x2716;</button></td></tr>';
+                        cols += '<th scope="row">'+(mm+1)+'</th>';
+
+                        cols += '<td style="width: 350px"><img class="img-fluid border rounded-3" src="../uploads/'+data.comments[mm].product_image+'" alt="med-1" style="height: 200px; width: 200px"/></td>';
+
+                        cols += '<td style="width: 10px">'+data.comments[mm].product_name+'</td>';
+
+                        cols += '<td style="width: 500px; text-align: justify">'+data.comments[mm].product_desc+'</td>';
+
+                        cols += '<td style="width: 500px; text-align: justify">'+data.comments[mm].category+'</td>';
+
+                        cols += '<td>$ '+data.comments[mm].price+'</td>';
+
+                        cols += '<td style="width: 200px"><button style="height:100px;width:100%;" id="edit" class="btn btn-primary btn-sm" onclick="startedit(' + data.comments[mm].id + ')">Edit</button>';
+
+                        cols += '<form method="POST" action="/removeproduct" ><button style="height:100px;width:100%;" type="submit" name="id" value="' + data.comments[mm].id + '" class="btn btn-danger btn-sm">Delete</button></form>    </td></tr>';
+
 
                 }
+            } else {
+
+                cols += '<tr align="center"><h2 >No Products.</h2></tr>';
+            }
+
 
                 place_images_container.innerHTML =cols;
 
@@ -37,30 +54,6 @@ class X {
 
 const aa=new X();
 aa.getImages();
-
-
-function deleteProduct(pid) {
-    
-    const deleting = fetch(`http://localhost:3000/removeproduct`, 
-    {
-        headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    method: "POST",
-    body: JSON.stringify({id: pid})
-
-    }).then(res => {
-            if(res.status === 200){
-                alert("Product Removed.");
-            } else {
-                alert("Product Not Removed.");
-            }
-        });
-
-    window.location = "/admin/view";
-
-}
 
 
 function startedit(pid) {

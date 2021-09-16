@@ -8,7 +8,6 @@ class X {
             }
         }).then((data)=>{
             if(data){
-                const i=0;
                 const place_images_container = document.getElementById("tbody");
                 var cols = "";
                 //alert(data.comments.length);
@@ -18,11 +17,18 @@ class X {
                     
                         var newRow = ("<tr>");
 
-                    cols += '<tr><td  colspan="1">' + (mm+1).toString() + '</td>';
-                    cols += '<td colspan="2">' + data.comments[mm].name + '</td>';
-                    cols += '<td colspan="2">' + data.comments[mm].email + '</td>';
-                    cols += '<td colspan="2">' + data.comments[mm].message + '</td></tr>';
-                    //alert(cols);
+
+                    cols += '<tr><th scope="row">'+(mm+1)+'</th>';
+
+
+                    cols += '<td>'+data.comments[mm].name+'</td>';
+
+                    cols += '<td>'+data.comments[mm].email+'</td>';
+
+                    cols += '<td>'+data.comments[mm].message+'</td>';
+
+                    cols += '<td>'+data.comments[mm].updatedAt+'</td></tr>';
+
 
                 }
 
