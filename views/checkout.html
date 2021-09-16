@@ -2,11 +2,9 @@
 <html lang="en-US">
 
 <head>
-    <title>Home - Feonix </title>
+    <title>Payment</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="Ram Enjam" />
-    <meta name="description" content="Feonix Website" />
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
@@ -27,7 +25,7 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light top-nav">
+        <nav class="navbar navbar-expand-lg navbar-light top-nav">
             <a class="navbar-brand" href="/"><img class="company-logo" src="./assets/images/logo-standard.png"></a>
 
             <div class="ml-auto">
@@ -38,9 +36,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/cart"><span class="mobile-hide">Cart</span> <i class="fas fa-shopping-cart"></i></a>
                     </li>
-                    <li class="nav-item" id="log">
-                        
+                    <li class="nav-item">
+                        <a class="nav-link" href="/aboutus"><span class="mobile-hide">About Us</span> <i class="fas fa-info-circle"></i></a>
                     </li>
+                    <button class="btn btn-sm btn-outline-success nav-buttons"> <li class="nav-item" id="log"></li> </button>
                 </ul>
             </div>
         </nav>
@@ -82,15 +81,17 @@
           <div class="row">
               <!--shopping cart-->
             <div class="col-md-9 p-3">
-            <h5>Billing Detail</h5><hr>
+            <h5>Billing</h5><hr>
 
-           <form method="post" action = "/checkoutform" class="mt-4">
+            <form method="post" action = "/checkoutform" class="mt-4" id="payment-form">
 
-              <div class="form-group">
+                <div class="form-group">
                 <label for="fulladdess" style="width:30%">Full Address:</label>
                 <textarea name="fulladdress" placeholder="e.g. 2122 Pine Street, Stettler, Alberta, T0C 2L2" class="form-control" required></textarea>
               </div>
 
+            <!--
+           
               <div class="form-group">
                 <label for="fullname" style="width:30%">Name on Card:</label>
                 <input type="text" name="fullname" placeholder="e.g. Peter Parker" class="form-control" required>
@@ -98,43 +99,54 @@
 
                 <div class="form-group">
                   <label for="cardno" style="width:30%">Card Number:</label>
-                  <input type="text" name="cardno" placeholder="e.g. 123412341234" class="form-control" >
+                  <input type="text" id="card_number" name="cardno" placeholder="e.g. 123412341234" class="form-control" >
               </div>
               
               <div class="row">
                 <div class="col-md-4 col-4">
                     <div class="form-group">
                     <label for="expmonth" style="width:60%">Expiry Month:</label>
-                      <input type="text" name="expmonth" placeholder="e.g. 10" class="form-control" required >
+                      <input type="text" name="expmonth" placeholder="e.g. 10" class="form-control" id="card_exp_month" required >
                   </div>
                 </div>
                 
                 <div class="col-md-4 col-4">
                   <div class="form-group">
                   <label for="expyear" style="width:60%">Expiry Year:</label>
-                    <input type="number" min='2021' name="expyear" placeholder="e.g. 2027" class="form-control" required >
+                    <input type="number" min='2021' id="card_exp_year" name="expyear" placeholder="e.g. 2027" class="form-control"  required >
                 </div>
                 </div>
 
                  <div class="col-md-4 col-4">
                   <div class="form-group">
                     <label for="cvv">CVV:</label>
-                    <input type="Password" name="cvv" placeholder="e.g. 123" class="form-control"  required>
+                    <input type="Password" id="card_cvvr" name="cvv" placeholder="e.g. 123" class="form-control"  required>
                   </div>
               </div>
           </div>
 
               <div class="form-group text-center mt-4">
-                  <input type="submit" name="checkout" class="btn btn-primary btn-block p-2" value="Place Order" id="border-less">
+                  <input type="submit" name="checkout" class="btn btn-primary btn-block p-2" value="Place Order" id="payBtn">
+                
               </div>
-          </form>
+          -->
 
-
+          <script 
+              src="//checkout.stripe.com/v2/checkout.js"
+              class="stripe-button"
+              data-key="pk_test_51HVmJKJq1hL4PqA0CVPxUfgiw9bKQDCnB27GnkEOpsuPfgKSzC2F6wQhC21htJtZG25PHg0uigbbhohpVwj9PMGo00U7B2S9Ts"
+              data-amount=document.cookie.total
+              data-currency="cad"
+              data-name="Pharmacy"
+              data-description="Management"
+              data-locale="auto" >
+            </script>
          </div>
+          </form>
 
     </main>
 
-   <footer id="contact" class="bg-light" style="color: #121212">
+   <footer id="contact" class="bg-footer" style="color: #121212">
             <div class="container-fluid ">
                 <div class="row m-0">
                     <div class="col-md-4 col-12 sub_footer">
@@ -144,7 +156,7 @@
                                  <input style="margin: 2% 0%" id="subname" type="text" class="form-control" placeholder="Name">
                                  <input style="margin: 2% 0%" id="subemail" type="text" class="form-control" placeholder="Email">
                                  <input style="margin: 2% 0%" id="submessage" type="text" class="form-control" placeholder="Message">
-                                 <button style="width:100%;margin-top: 2%;" class="text-center" onclick="subscribe()">Subscribe</button>
+                                 <button style="width:100%;margin-top: 2%;" class="text-center btn btn-sm btn-success" onclick="subscribe()">Send</button>
                              </div>
                          </div>
                     </div>
@@ -161,7 +173,7 @@
                         <div class="contact_wrapper">
                             <div class="contact_info">
                                 <h6>Address</h6>
-                                <p>2122 Pine Street, Stettler, Alberta, T0C 2L2, CANADA</p>
+                                <p>3189 Edouard Montpetit ,Montreal,Quebec,CANADA</p>
                             </div>
                        
                             <div class="contact_info">
@@ -171,14 +183,14 @@
                        
                             <div class="contact_info">
                                 <h6>Phone</h6>
-                                <p>+91 1234123456</p>
+                                <p>+1 4381231231</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="text-center">
-                   <p style="margin-bottom: 10px;">&copy;2021</p> 
-                   <h6 style="margin-bottom: 10px;">CONNECT WITH US</h6>
+                    <h6 style="margin-bottom: 10px;">Best Care Pharmacy</h6>
+                    <p style="margin-bottom: 10px;">&copy;2021</p> 
                    <div class="social_media">
                        <a href="#">
                             <span class="fab fa-facebook-square"></span>
@@ -239,184 +251,7 @@
   });
 
 </script>
-<script>
-    window.addEventListener("DOMContentLoaded",() => {
-	let range1 = new RollCounterRange("#range1"),
-		range2 = new RollCounterRange("#range2");
-});
 
-class RollCounterRange {
-	constructor(id) {
-		this.el = document.querySelector(id);
-		this.srValue = null;
-		this.fill = null;
-		this.digitCols = null;
-		this.lastDigits = "";
-		this.rollDuration = 0; // the transition duration from CSS will override this
-		this.trans09 = false;
-
-		if (this.el) {
-			this.buildSlider();
-			this.el.addEventListener("input",this.changeValue.bind(this));
-		}
-	}
-	buildSlider() {
-		// create a div to contain the <input>
-		let rangeWrap = document.createElement("div");
-		rangeWrap.className = "range";
-		this.el.parentElement.insertBefore(rangeWrap,this.el);
-
-		// create another div to contain the <input> and fill
-		let rangeInput = document.createElement("span");
-		rangeInput.className = "range__input";
-		rangeWrap.appendChild(rangeInput);
-
-		// range fill, place the <input> and fill inside container <span>
-		let rangeFill = document.createElement("span");
-		rangeFill.className = "range__input-fill";
-		rangeInput.appendChild(this.el);
-		rangeInput.appendChild(rangeFill);
-
-		// create the counter
-		let counter = document.createElement("span");
-		counter.className = "range__counter";
-		rangeWrap.appendChild(counter);
-
-		// screen reader value
-		let srValue = document.createElement("span");
-		srValue.className = "range__counter-sr";
-		srValue.textContent = "0";
-		counter.appendChild(srValue);
-
-		// column for each digit
-		for (let D of this.el.max.split("")) {
-			let digitCol = document.createElement("span");
-			digitCol.className = "range__counter-column";
-			digitCol.setAttribute("aria-hidden","true");
-			counter.appendChild(digitCol);
-
-			// digits (blank, 0–9, fake 0)
-			for (let d = 0; d <= 11; ++d) {
-				let digit = document.createElement("span");
-				digit.className = "range__counter-digit";
-
-				if (d > 0)
-					digit.textContent = d == 11 ? 0 : `${d - 1}`;
-
-				digitCol.appendChild(digit);
-			}
-		}
-
-		this.srValue = srValue;
-		this.fill = rangeFill;
-		this.digitCols = counter.querySelectorAll(".range__counter-column");
-		this.lastDigits = this.el.value;
-
-		while (this.lastDigits.length < this.digitCols.length)
-			this.lastDigits = " " + this.lastDigits;
-
-		this.changeValue();
-
-		// use the transition duration from CSS
-		let colCS = window.getComputedStyle(this.digitCols[0]),
-			transDur = colCS.getPropertyValue("transition-duration"),
-			msLabelPos = transDur.indexOf("ms"),
-			sLabelPos = transDur.indexOf("s");
-
-		if (msLabelPos > -1)
-			this.rollDuration = transDur.substr(0,msLabelPos);
-		else if (sLabelPos > -1)
-			this.rollDuration = transDur.substr(0,sLabelPos) * 1e3;
-	}
-	changeValue() {
-		// keep the value within range
-		if (+this.el.value > this.el.max)
-			this.el.value = this.el.max;
-
-		else if (+this.el.value < this.el.min)
-			this.el.value = this.el.min;
-
-		// update the screen reader value
-		if (this.srValue)
-			this.srValue.textContent = this.el.value;
-
-		// width of fill
-		if (this.fill) {
-			let pct = this.el.value / this.el.max,
-				fillWidth = pct * 100,
-				thumbEm = 1 - pct;
-
-			this.fill.style.width = `calc(${fillWidth}% + ${thumbEm}em)`;
-		}
-		
-		if (this.digitCols) {
-			let rangeVal = this.el.value;
-
-			// add blanks at the start if needed
-			while (rangeVal.length < this.digitCols.length)
-				rangeVal = " " + rangeVal;
-
-			// get the differences between current and last digits
-			let diffsFromLast = [];
-			if (this.lastDigits) {
-				rangeVal.split("").forEach((r,i) => {
-					let diff = +r - this.lastDigits[i];
-					diffsFromLast.push(diff);
-				});
-			}
-
-			// roll the digits
-			this.trans09 = false;
-			rangeVal.split("").forEach((e,i) => {
-				let digitH = 1.5,
-					over9 = false,
-					under0 = false,
-					transY = e === " " ? 0 : (-digitH * (+e + 1)),
-					col = this.digitCols[i];
-
-				// start handling the 9-to-0 or 0-to-9 transition
-				if (e == 0 && diffsFromLast[i] == -9) {
-					transY = -digitH * 11;
-					over9 = true;
-
-				} else if (e == 9 && diffsFromLast[i] == 9) {
-					transY = 0;
-					under0 = true;
-				}
-
-				col.style.transform = `translateY(${transY}em)`;
-				col.firstChild.textContent = "";
-
-				// finish the transition
-				if (over9 || under0) {
-					this.trans09 = true;
-					// add a temporary 9
-					if (under0)
-						col.firstChild.textContent = e;
-
-					setTimeout(() => {
-						if (this.trans09) {
-							let pauseClass = "range__counter-column--pause",
-								transYAgain = -digitH * (over9 ? 1 : 10);
-
-							col.classList.add(pauseClass);
-							col.style.transform = `translateY(${transYAgain}em)`;
-							void col.offsetHeight;
-							col.classList.remove(pauseClass);
-
-							// remove the 9
-							if (under0)
-								col.firstChild.textContent = "";
-						}
-
-					},this.rollDuration);
-				}
-			});
-			this.lastDigits = rangeVal;
-		}
-	}
-}
-</script>
 <script type="text/javascript" src="./assets/js/index.js"></script>
 <script type="text/javascript" src="./assets/js/checkout.js"></script>
 </html>
