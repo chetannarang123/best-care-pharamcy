@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8" />
+        <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="images/icons/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="./images/icons/favicon.ico" type="image/x-icon" />
     <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
@@ -16,7 +16,7 @@
   </head> 
 </html>
 
-<title>Admin | Edit Details</title>
+<title>Admin | Add Medicines</title>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
@@ -32,7 +32,7 @@
       <img class="company-logo" src="../assets/images/logo-standard.png">
     </a>
     <button
-      class="navbar-toggler"
+      class="navbar-toggler" 
       type="button"
       data-bs-toggle="collapse"
       data-bs-target="#navbarSupportedContent"
@@ -82,20 +82,15 @@
   </div>
 </nav>
 
+
 <div class="container">
-  <form class="form container mt-4" enctype="multipart/form-data" method="post" action="/updateproduct">
-
+  <form class="form container mt-4" enctype="multipart/form-data" method="post" action="/add_products" id="signup_form">
+    <h3>Add New Products</h3>
     <div class="mb-3">
-      <h3>Edit Details</h3>
-
-      <label for="price-new">Change Name</label>
-      <input id="pname" required type="text" name="pname" class="form-control" min="0" />
+      <label for="medicine-name">Medicine Name</label>
+      <input type="text" name="pname" class="form-control" required />
     </div>
-    <div> 
-            <label for="medicine-desc-new">Enter New Description</label>
-      <textarea class="form-control" id="pdesc" required type="text" name="pdesc" rows="3"></textarea>
-    </div>
-       <div class="mb-3">
+    <div class="mb-3">
       <label for="medicine-name">Category</label>
     <select id="category" required name="category" class="form-control text-center" style="padding: 0% 15%">
           <option class="text-center" value="Medication">Medication</option>
@@ -104,22 +99,33 @@
       </select>
     </div>
     <div class="mb-3">
-      <label for="price-new">Change Price</label>
-      <input id="price" required type="number" name="price" class="form-control" min="0" />
+      <label for="medicine-desc">Description</label>
+      <textarea
+        class="form-control"
+        id="medicine-desc"
+        rows="3"  name="pdesc"
+        required
+      ></textarea>
     </div>
     <div class="mb-3">
-      <label for="image-new">Upload New Image</label>
-      <input id="pimage" required type="file" name="file" class="form-control" />
+      <label for="price">Price</label>
+      <input
+        type="number"
+        id="price"
+        min="0" name="price"
+        step="0.25"
+        class="form-control"
+        required
+      />
     </div>
-    <button class="btn btn-success btn-sm" type="submit" name="update" value="Update">Update Details</button>
+    <div class="mb-3">
+      <label for="image">Image</label>
+      <input type="file" name="file" class="form-control" required />
+    </div>
+    <button class="btn btn-success btn-sm">Add Product</button>
   </form>
 </div>
 
-</body>
-
-<script src="editprod.js"></script>
-
-</html>
 
 <div class="container">
   <footer
