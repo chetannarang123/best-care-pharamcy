@@ -1,7 +1,9 @@
+// we are using sequelize to store mysql data
 const Sequelize = require("sequelize");
 
 const sequelize = require("../utils/database");
 
+//these are columns for admin table
 const Admin = sequelize.define("admin",{
     id:{
         type: Sequelize.INTEGER,
@@ -27,4 +29,5 @@ const Admin = sequelize.define("admin",{
     }
 });
 
+// we are exporting this table so we can use it anywhere
 module.exports = Admin;

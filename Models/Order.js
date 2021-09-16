@@ -1,6 +1,8 @@
+// we are using sequelize to store mysql data
 const Sequelize = require("sequelize");
 
 const sequelize = require("../utils/database");
+//these are columns for order table
 
 const Products = sequelize.define("order",{
     id:{
@@ -29,26 +31,11 @@ const Products = sequelize.define("order",{
         type: Sequelize.STRING,
         allowNull: false
     },
-    nameoncard:{
+    status:{
         type: Sequelize.STRING,
-        allowNull: false
-    },
-    cardno:{
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    expiry_month:{
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
-    expiry_year:{
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
-    cvv:{
-        type: Sequelize.INTEGER,
         allowNull: false
     }
 });
 
+// we are exporting this table so we can use it anywhere
 module.exports = Products;

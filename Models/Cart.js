@@ -1,6 +1,8 @@
+// we are using sequelize to store mysql data
 const Sequelize = require("sequelize");
 
 const sequelize = require("../utils/database");
+//these are columns for cart table
 
 const Cart = sequelize.define("cart",{
     email:{
@@ -16,4 +18,5 @@ const Cart = sequelize.define("cart",{
     
 });
 
+// we are exporting this table so we can use it anywhere
 module.exports = Cart;
