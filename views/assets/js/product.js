@@ -11,7 +11,7 @@ fetch(`http://localhost:3000/getproduct`).then(res => {
         const pprice = document.getElementById("pprice");
         const cartb = document.getElementById("addToCart");
 
-        pimage.src = data.comments.product_image;
+        pimage.src = "./uploads/"+data.comments.product_image;
         
         pname.innerHTML = data.comments.product_name;
 

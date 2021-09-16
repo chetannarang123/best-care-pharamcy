@@ -24,13 +24,13 @@ fetch(`http://localhost:3000/getcartitems`).then(res => {
                 //alert(data.comments[mm].product_desc);
                     var newRow = ("<tr>");
 
-                cols += '<tr><input type="hidden" id="id'+data.comments[mm].id+'" value="'+data.comments[mm].id+'"><td width="150px"><img src="' + data.comments[mm].product_image + '" width="100%"></td>';
+                cols += '<tr><input type="hidden" id="id'+data.comments[mm].id+'" value="'+data.comments[mm].product_name+'"><td width="150px"><img src="./uploads/' + data.comments[mm].product_image + '" width="100%"></td>';
                 cols += '<td><span>' + data.comments[mm].product_name +'</span>';
                 cols += '<p>'+data.comments[mm].product_desc+'</p></td>';
                 cols += '<td><input id="quantity'+data.comments[mm].id+'" type="number" min="1" onchange="calculate('+data.comments[mm].id+')" value="1"></td>';
                 cols += '<td><input style="border:none;text-align:center;width:50%" type="text" readonly id="price'+data.comments[mm].id+'" value="'+data.comments[mm].price+'"></td>';
                 cols += '<td><input style="border:none;text-align:center;width:50%" type="text" readonly id="amount'+data.comments[mm].id+'" value="'+data.comments[mm].price+'"></td>';
-                cols += '<td colspan="20" class="text-center"><a title="Delete Product" onclick="removefromcart('+data.comments[mm].id+')" class=" text-danger ">&#10006; </a></td></tr> '
+                cols += '<td colspan="20" class="text-center"><form method="POST" action="/removefromcart"><button type="submit" name="id" value="'+data.comments[mm].id+'" style="border:none;color:red;background-color:transparent;">&#10006; </button></form></td></tr> '
 
             }
         }
@@ -64,6 +64,10 @@ function checkout() {
       quantity+='#';
     });
     var total = $("#total").val();
+    const d = new Date();
+  d.setTime(d.getTime() + (1*5*60*1000));
+  let expires = "expires="+ d.toUTCString();
+    document.cookie = "total="+total+";"+expires+";path=/";
     //alert(id);
     //alert(quantity);
     //alert(total);

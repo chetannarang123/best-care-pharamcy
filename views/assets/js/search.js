@@ -1,21 +1,21 @@
 
-fetch(`http://localhost:3000/getallergies`).then(res => {
+fetch(`http://localhost:3000/getsearch`).then(res => {
     if(res.status === 200){
         return res.json();
     }
 }).then((data)=>{
     if(data){
         const i=0;
-        const place_images_container = document.getElementById("place_allergies");
+        const place_images_container = document.getElementById("place_search");
         var cols = "";
-        //alert(data.comments.length);
+        alert(data.comments.length+" products found.");
 
         for(let mm=0;mm<data.comments.length;mm++) {
 
             //alert(data.comments[mm].product_desc);
                 var newRow = ("<div>");
 
-            cols += '<div class="col-md-6 col-lg-3 col-12"><div class="card"><div class="card_img"><img  style="height:179px;" class="card-img-top" src="./uploads/' + data.comments[mm].product_image + '" alt="Card image cap"></div>';
+            cols += '<div class="col-md-6 col-lg-3 col-12"><div class="card"><div class="card_img"><img style="height:179px;" class="card-img-top" src="./uploads/' + data.comments[mm].product_image + '" alt="Card image cap"></div>';
 
             cols += '<div class="card-body"><div class="card_header"><h5> <button style="border:none;background-color:transparent;color:blue" onclick="product('+data.comments[mm].id+')">' + data.comments[mm].product_name +'</button></h5></div>';
 
@@ -31,7 +31,6 @@ fetch(`http://localhost:3000/getallergies`).then(res => {
 
     }
 });
-
 
 
 

@@ -15,7 +15,7 @@ fetch(`http://localhost:3000/getcosmetics`).then(res => {
             //alert(data.comments[mm].product_desc);
                 var newRow = ("<div>");
 
-            cols += '<div class="col-md-6 col-lg-3 col-12"><div class="card"><div class="card_img"><img class="card-img-top" src="' + data.comments[mm].product_image + '" alt="Card image cap"></div>';
+            cols += '<div class="col-md-6 col-lg-3 col-12"><div class="card"><div class="card_img"><img  style="height:179px;" class="card-img-top" src="./uploads/' + data.comments[mm].product_image + '" alt="Card image cap"></div>';
 
             cols += '<div class="card-body"><div class="card_header"><h5> <button style="border:none;background-color:transparent;color:blue" onclick="product('+data.comments[mm].id+')">' + data.comments[mm].product_name +'</button></h5></div>';
 

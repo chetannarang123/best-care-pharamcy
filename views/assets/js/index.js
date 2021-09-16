@@ -17,6 +17,36 @@ const logged = fetch(`http://localhost:3000/isloggedin`).then(res => {
     }
 });
 
+var input = document.getElementById("search");
+
+input.addEventListener("keyup", function(event) {
+
+  if (event.keyCode === 13) {
+
+    getProducts(this.value);
+
+  }
+});
+
+function getProducts(val) {
+
+    //var val = document.getElementById("search").value;
+
+fetch(`http://localhost:3000/searchProducts`, 
+    {
+        headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: "POST",
+    body: JSON.stringify({name: val})
+
+    });
+
+ window.location = '/search';
+
+}
+
 
 function addToCart(id){
 
@@ -57,6 +87,7 @@ function subscribe() {
         return res.json();
     }).then((data)=>{
         alert(data.message);
+        window.location.href = "/";
     });
 
 }

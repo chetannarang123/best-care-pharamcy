@@ -22,7 +22,7 @@ fetch(`http://localhost:3000/getorder`).then(res => {
                     
                         var newRow = ("<tr>");
 
-                    cols += '<tr class="text-center"><td  colspan="1">' + data.comments[mm].id + '</td>';
+                    cols += '<tr class="text-center"><td  colspan="1">' + parseInt(mm+1) + '</td>';
                     cols += '<td colspan="2">' + data.comments[mm].userid + '</td>';
                     cols += '<td colspan="2">' + data.comments[mm].fulladdress + '</td>';
                     cols += '<td colspan="4" class="text-center">';
@@ -45,7 +45,7 @@ fetch(`http://localhost:3000/getorder`).then(res => {
 
                     cols += '<td colspan="4" style="width:73.5px">' + data.comments[mm].total + '</td>';
 
-                    cols += '<td colspan="2" class="text-center"></button><button style="color:red;background-color:transparent;" onclick="deleteOrder(' + data.comments[mm].id + ')">Cancel</button></td></tr>';
+                    cols += '<td colspan="2" class="text-center"><form method="POST" action="cancelorder"><button type="submit" name="id" style="color:red;background-color:transparent;border:none;" value="' + data.comments[mm].id + '">Cancel</button></form></td></tr>';
                     //alert(cols);
 
                 }
@@ -55,27 +55,3 @@ fetch(`http://localhost:3000/getorder`).then(res => {
 
             } 
         });
-
-function deleteOrder(id) {
-
-const ordered = fetch(`http://localhost:3000/cancelorder`, 
-    {
-        headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    method: "POST",
-    body: JSON.stringify({id: id})
-
-    }).then(res => {
-        return res.json();
-    }).then(res => {
-        if(res.status === 200) {
-            alert('Order Cancelled.');
-        } else {
-            alert('Order Not Cancelled.');
-        }
-    });
-
-    window.location.href = '/orders';
-}
